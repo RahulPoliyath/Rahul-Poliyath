@@ -576,7 +576,7 @@ function initDownloadHandlers() {
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'Alex_Johnson_CV.txt';
+            a.download = 'Rahul_Poliyath_CV.txt';
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
@@ -589,11 +589,11 @@ function initDownloadHandlers() {
 }
 
 function generateCVContent() {
-    return `ALEX JOHNSON
+    return `RAHUL POLIYATH
 Full-Stack Developer & Creative Problem Solver
-Email: alex.johnson@email.com
-Phone: +1 (555) 123-4567
-Location: San Francisco, CA
+Email: rahulpoliyayh5230@email.com
+Phone: +(91) 000-0000
+Location: Navi Mumbai, MH
 
 PROFESSIONAL SUMMARY
 Passionate full-stack developer with 5+ years of experience creating innovative web applications and digital solutions. I specialize in modern JavaScript frameworks, responsive design, and user experience optimization.
@@ -630,8 +630,8 @@ PROJECTS
 • Data Dashboard - Real-time analytics dashboard with data visualization
 
 ACHIEVEMENTS
-• 50+ Projects Completed
-• 30+ Happy Clients
+• 7+ Projects Completed
+• 7+ Happy Clients
 • 5 Years Experience
 `;
 }
