@@ -551,5 +551,159 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
+// Resume Download Handler
+class ResumeDownload {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        const downloadBtn = document.getElementById('download-resume');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.downloadResume();
+            });
+        }
+    }
+
+    downloadResume() {
+        // Create a simulated PDF download
+        const resumeContent = this.generateResumeData();
+        const blob = new Blob([resumeContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Alex_Developer_Resume.txt';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        // Show download notification
+        this.showDownloadNotification();
+    }
+
+    generateResumeData() {
+        return `
+ALEX DEVELOPER
+Full Stack Developer
+Email: alex@example.com
+Location: San Francisco, CA
+GitHub: https://github.com/alexdev
+LinkedIn: https://linkedin.com/in/alexdev
+
+SUMMARY
+Passionate full-stack developer with 5+ years of experience building scalable web applications. 
+I specialize in modern JavaScript frameworks, cloud technologies, and creating exceptional user experiences.
+
+EXPERIENCE
+
+Senior Full Stack Developer | TechCorp Inc. | 2022 - Present
+- Lead development of enterprise web applications
+- Mentor junior developers and architect scalable solutions
+- Implemented microservices architecture reducing system latency by 40%
+
+Frontend Developer | StartupXYZ | 2020 - 2022
+- Developed responsive web applications using React and TypeScript
+- Collaborated with design teams to implement pixel-perfect UIs
+- Improved application performance by 60% through code optimization
+
+Junior Developer | WebAgency | 2019 - 2020
+- Built client websites using modern web technologies
+- Learned best practices in web development and project management
+- Delivered 15+ client projects on time and under budget
+
+TECHNICAL SKILLS
+
+Frontend Technologies:
+- JavaScript (95% - Expert level)
+- React (90% - Advanced)
+- TypeScript (85% - Advanced)
+- Vue.js (80% - Intermediate)
+
+Backend Technologies:
+- Node.js (90% - Advanced)
+- Python (85% - Advanced)
+
+Database & Cloud:
+- PostgreSQL (80% - Intermediate)
+- MongoDB (75% - Intermediate)
+- AWS (80% - Intermediate)
+- Docker (75% - Intermediate)
+
+Tools & Others:
+- Git (95% - Expert)
+- REST APIs
+- GraphQL
+- Socket.io
+- Jest/Testing
+
+FEATURED PROJECTS
+
+E-Commerce Platform
+Technologies: React, Node.js, PostgreSQL, Stripe API
+- Full-stack e-commerce solution with payment processing
+- User authentication, admin dashboard, inventory management
+- Deployed on AWS with CI/CD pipeline
+
+Task Management App  
+Technologies: Vue.js, Express.js, MongoDB, Socket.io
+- Collaborative task management with real-time updates
+- Team collaboration features and advanced filtering
+- Progressive Web App (PWA) capabilities
+
+Weather Dashboard
+Technologies: React, Chart.js, Weather API, CSS Grid
+- Interactive weather dashboard with location-based forecasts
+- Historical data visualization and mobile-responsive design
+- Integration with third-party weather APIs
+
+CONTACT INFORMATION
+Email: alex@example.com
+Phone: Available upon request
+Location: San Francisco, CA
+GitHub: https://github.com/alexdev
+LinkedIn: https://linkedin.com/in/alexdev
+Twitter: https://twitter.com/alexdev
+
+---
+Generated on: ${new Date().toLocaleDateString()}
+        `;
+    }
+
+    showDownloadNotification() {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            padding: var(--space-16) var(--space-24);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        `;
+        notification.innerHTML = `
+            <i class="fas fa-download"></i>
+            <span>Resume downloaded successfully!</span>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease-out forwards';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+}
+
 // Initialize lazy loading if needed
 document.addEventListener('DOMContentLoaded', lazyLoadImages);
