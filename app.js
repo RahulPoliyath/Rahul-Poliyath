@@ -400,7 +400,7 @@ class ResumeDownload {
         
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Alex_Developer_Resume.txt';
+        a.download = 'Rahul_Poliyath_Resume.txt';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
@@ -413,12 +413,12 @@ class ResumeDownload {
 
     generateResumeData() {
         return `
-ALEX DEVELOPER
+RAHUL POLIYATH
 Full Stack Developer
-Email: alex@example.com
-Location: San Francisco, CA
-GitHub: https://github.com/alexdev
-LinkedIn: https://linkedin.com/in/alexdev
+Email: Rahulpoliyath@gmail.com
+Location: NAVI MUMBAI, MH
+GitHub: https://github.com/rahulpoliyath
+LinkedIn: https://linkedin.com/in/rahulpoliyath
 
 SUMMARY
 Passionate full-stack developer with 5+ years of experience building scalable web applications. 
@@ -487,12 +487,12 @@ Technologies: React, Chart.js, Weather API, CSS Grid
 - Integration with third-party weather APIs
 
 CONTACT INFORMATION
-Email: alex@example.com
+Email: rahulpoliyath@gmail.com
 Phone: Available upon request
-Location: San Francisco, CA
-GitHub: https://github.com/alexdev
-LinkedIn: https://linkedin.com/in/alexdev
-Twitter: https://twitter.com/alexdev
+Location: NAVI MUMBAI, MH
+GitHub: https://github.com/rahulpoliyath5230
+LinkedIn: https://linkedin.com/in/rahulpoliyath
+Twitter: https://twitter.com/rahulpoliyath
 
 ---
 Generated on: ${new Date().toLocaleDateString()}
