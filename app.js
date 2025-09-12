@@ -697,6 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typingElement) {
         const texts = [
             'Full Stack Developer',
+            'Anonymous',
             'React Specialist',
             'Node.js Expert',
             'UI/UX Enthusiast',
@@ -719,9 +720,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Handle page visibility change
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        document.title = '👋 Come back soon! - Alex Developer';
+        document.title = '👋 Come back soon! - XrAnonymous';
     } else {
-        document.title = 'Alex Developer - Full Stack Developer';
+        document.title = 'RahulPoliyath - Full Stack Developer';
     }
 });
 
