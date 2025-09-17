@@ -420,16 +420,11 @@ Location: NAVI MUMBAI, MH
 GitHub: https://github.com/rahulpoliyath
 LinkedIn: https://linkedin.com/in/rahulpoliyath
 
-SUMMARY
-Passionate full-stack developer with 5+ years of experience building scalable web applications. 
-I specialize in modern JavaScript frameworks, cloud technologies, and creating exceptional user experiences.
-
-EXPERIENCE
 
 # Rahul Radish Poliyath
 
 **Email:** rahulpoliyath5230@gmail.com  
-**Mobile:** +91 xxxxxx5825  
+**Mobile:** +91 xxxxxx5825 ~ Available upon request
 **Address:**  Vashi, Navi Mumbai, 410206
 
 ---
@@ -498,6 +493,8 @@ Available on request.
 ---
 
 > *Profile Summary:* Energetic BCA graduate with strong programming fundamentals, hands-on project experience, and Cloud Computing certification. Highly motivated to contribute technical, creative, and problem-solving abilities in a forward-thinking IT company.
+Passionate full-stack developer with 2+ years of personal experience building scalable web applications. 
+I specialize in modern JavaScript frameworks, cloud technologies, and creating exceptional user experiences.
 
 CONTACT INFORMATION
 Email: rahulpoliyath@gmail.com
