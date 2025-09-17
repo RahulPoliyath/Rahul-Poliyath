@@ -426,65 +426,78 @@ I specialize in modern JavaScript frameworks, cloud technologies, and creating e
 
 EXPERIENCE
 
-Senior Full Stack Developer | TechCorp Inc. | 2022 - Present
-- Lead development of enterprise web applications
-- Mentor junior developers and architect scalable solutions
-- Implemented microservices architecture reducing system latency by 40%
+# Rahul Radish Poliyath
 
-Frontend Developer | StartupXYZ | 2020 - 2022
-- Developed responsive web applications using React and TypeScript
-- Collaborated with design teams to implement pixel-perfect UIs
-- Improved application performance by 60% through code optimization
+**Email:** rahulpoliyath5230@gmail.com  
+**Mobile:** +91 xxxxxx5825  
+**Address:**  Vashi, Navi Mumbai, 410206
 
-Junior Developer | WebAgency | 2019 - 2020
-- Built client websites using modern web technologies
-- Learned best practices in web development and project management
-- Delivered 15+ client projects on time and under budget
+---
 
-TECHNICAL SKILLS
+## Career Objective
+Motivated and detail-oriented BCA graduate eager to launch a career in IT, software development, or cloud computing. Seeking a challenging entry-level role in a dynamic organization to utilize my technical and analytical skills while contributing to innovative, impactful projects and growing professionally.
 
-Frontend Technologies:
-- JavaScript (95% - Expert level)
-- React (90% - Advanced)
-- TypeScript (85% - Advanced)
-- Vue.js (80% - Intermediate)
+---
 
-Backend Technologies:
-- Node.js (90% - Advanced)
-- Python (85% - Advanced)
+## Education
+**Bachelor of Computer Applications (BCA)**  
+Pune University • Graduated 2022  
 
-Database & Cloud:
-- PostgreSQL (80% - Intermediate)
-- MongoDB (75% - Intermediate)
-- AWS (80% - Intermediate)
-- Docker (75% - Intermediate)
+**Higher Secondary (12th) – Commerce**  
+HSC Board (Commerce) • 2018  
 
-Tools & Others:
-- Git (95% - Expert)
-- REST APIs
-- GraphQL
-- Socket.io
-- Jest/Testing
+**High School (10th) – English Medium**  
+SSC Board • 2016
 
-FEATURED PROJECTS
+---
 
-E-Commerce Platform
-Technologies: React, Node.js, PostgreSQL, Stripe API
-- Full-stack e-commerce solution with payment processing
-- User authentication, admin dashboard, inventory management
-- Deployed on AWS with CI/CD pipeline
+## Technical Skills
+- Programming Languages: Python, Java, C++, HTML
+- Web Technologies: HTML, CSS, JavaScript
+- Databases: MySQL, SQL
+- Operating Systems: Linux, Windows, Android
+- Tools: Git, VS Code, Office Suite
 
-Task Management App  
-Technologies: Vue.js, Express.js, MongoDB, Socket.io
-- Collaborative task management with real-time updates
-- Team collaboration features and advanced filtering
-- Progressive Web App (PWA) capabilities
+---
 
+## Certification
+- Cloud Computing (2024)
+
+---
+
+## Projects
+- **FEATURED PROJECTS
 Weather Dashboard
 Technologies: React, Chart.js, Weather API, CSS Grid
 - Interactive weather dashboard with location-based forecasts
 - Historical data visualization and mobile-responsive design
 - Integration with third-party weather APIs
+
+- **Portfolio Website:** Built a responsive personal website using HTML, CSS, and JavaScript.
+
+---
+
+## Strengths & Soft Skills
+- Fast learner and adaptable to new technologies
+- Strong logical and analytical thinking
+- Effective communicator and team player
+- Attention to detail and consistent performance
+
+---
+
+## Extra Information
+**Languages:** English, Hindi, Marathi  
+
+**Hobbies:** Gaming, coding, tech tutorials, online learning
+
+---
+
+## References
+Available on request.
+
+---
+
+> *Profile Summary:* Energetic BCA graduate with strong programming fundamentals, hands-on project experience, and Cloud Computing certification. Highly motivated to contribute technical, creative, and problem-solving abilities in a forward-thinking IT company.
 
 CONTACT INFORMATION
 Email: rahulpoliyath@gmail.com
