@@ -1,781 +1,624 @@
-// Theme Management
-class ThemeManager {
+// Futuristic Portfolio JavaScript
+
+class FuturisticPortfolio {
     constructor() {
-        this.theme = this.getInitialTheme();
-        this.init();
+        this.initializeParticles();
+        this.initializeThemeToggle();
+        this.initializeScrollAnimations();
+        this.initializeSkillBars();
+        this.initializeContactForm();
+        this.initializeBackToTop();
+        this.initializeSmoothScroll();
+        // Initialize typing animation after a short delay to ensure DOM is ready
+        setTimeout(() => this.initializeTypingAnimation(), 500);
     }
 
-    getInitialTheme() {
-        const saved = localStorage.getItem('theme');
-        if (saved) return saved;
-        
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-
-    init() {
-        this.setTheme(this.theme);
-        this.bindEvents();
-    }
-
-    setTheme(theme) {
-        this.theme = theme;
-        document.documentElement.setAttribute('data-color-scheme', theme);
-        localStorage.setItem('theme', theme);
-        
-        // Update theme toggle button
-        const toggle = document.getElementById('theme-toggle');
-        if (toggle) {
-            toggle.setAttribute('data-theme', theme);
-        }
-    }
-
-    toggle() {
-        const newTheme = this.theme === 'light' ? 'dark' : 'light';
-        this.setTheme(newTheme);
-    }
-
-    bindEvents() {
-        const toggle = document.getElementById('theme-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.toggle();
-            });
-        }
-
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                this.setTheme(e.matches ? 'dark' : 'light');
-            }
+    // Initialize Particles.js background
+    initializeParticles() {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ['#00ffc6', '#ba4aff', '#3b82f6']
+                },
+                shape: {
+                    type: ['circle', 'triangle', 'edge'],
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00ffc6',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
         });
     }
-}
 
-// Typing Animation
-class TypingAnimation {
-    constructor(element, texts, speed = 100, delay = 2000) {
-        this.element = element;
-        this.texts = texts;
-        this.speed = speed;
-        this.delay = delay;
-        this.textIndex = 0;
-        this.charIndex = 0;
-        this.isDeleting = false;
+    // Typing animation for hero name
+    initializeTypingAnimation() {
+        const nameElement = document.getElementById('typing-name');
+        if (!nameElement) return;
+
+        const name = 'Alex Thompson';
+        let i = 0;
         
-        this.start();
-    }
+        // Clear any existing content
+        nameElement.innerHTML = '';
 
-    start() {
-        this.type();
-    }
-
-    type() {
-        const currentText = this.texts[this.textIndex];
-        
-        if (this.isDeleting) {
-            this.element.textContent = currentText.substring(0, this.charIndex - 1);
-            this.charIndex--;
-        } else {
-            this.element.textContent = currentText.substring(0, this.charIndex + 1);
-            this.charIndex++;
-        }
-
-        let timeout = this.speed;
-
-        if (!this.isDeleting && this.charIndex === currentText.length) {
-            timeout = this.delay;
-            this.isDeleting = true;
-        } else if (this.isDeleting && this.charIndex === 0) {
-            this.isDeleting = false;
-            this.textIndex = (this.textIndex + 1) % this.texts.length;
-            timeout = 500;
-        }
-
-        setTimeout(() => this.type(), timeout);
-    }
-}
-
-// Mobile Navigation
-class MobileNav {
-    constructor() {
-        this.menuBtn = document.getElementById('mobile-menu-btn');
-        this.navMenu = document.getElementById('nav-menu');
-        this.navLinks = document.querySelectorAll('.nav-link');
-        
-        this.init();
-    }
-
-    init() {
-        if (this.menuBtn && this.navMenu) {
-            this.menuBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.toggle();
-            });
-            
-            // Close menu when clicking on nav links
-            this.navLinks.forEach(link => {
-                link.addEventListener('click', () => this.close());
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!this.menuBtn.contains(e.target) && !this.navMenu.contains(e.target)) {
-                    this.close();
-                }
-            });
-        }
-    }
-
-    toggle() {
-        this.menuBtn.classList.toggle('active');
-        this.navMenu.classList.toggle('active');
-    }
-
-    close() {
-        this.menuBtn.classList.remove('active');
-        this.navMenu.classList.remove('active');
-    }
-}
-
-// Smooth Scrolling Navigation
-class SmoothScroll {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-        const backToTop = document.getElementById('back-to-top');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    this.scrollTo(targetId);
-                }
-            });
-        });
-
-        if (backToTop) {
-            backToTop.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.scrollTo('#home');
-            });
-        }
-
-        // Show/hide back to top button
-        this.handleBackToTopVisibility();
-    }
-
-    scrollTo(targetId) {
-        const target = document.querySelector(targetId);
-        if (target) {
-            const navbar = document.querySelector('.navbar');
-            const navHeight = navbar ? navbar.offsetHeight : 0;
-            const targetPosition = target.offsetTop - navHeight - 20;
-            
-            window.scrollTo({
-                top: Math.max(0, targetPosition),
-                behavior: 'smooth'
-            });
-        }
-    }
-
-    handleBackToTopVisibility() {
-        const backToTop = document.getElementById('back-to-top');
-        if (!backToTop) return;
-
-        // Initially hide the button
-        backToTop.style.opacity = '0';
-        backToTop.style.visibility = 'hidden';
-        backToTop.style.transition = 'all 0.3s ease';
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.style.opacity = '1';
-                backToTop.style.visibility = 'visible';
+        const typeWriter = () => {
+            if (i < name.length) {
+                nameElement.innerHTML += name.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
             } else {
-                backToTop.style.opacity = '0';
-                backToTop.style.visibility = 'hidden';
+                // Add blinking cursor after completion
+                setTimeout(() => {
+                    nameElement.innerHTML += '<span class="cursor">|</span>';
+                    
+                    // Add CSS for blinking cursor if not already added
+                    if (!document.querySelector('#cursor-style')) {
+                        const style = document.createElement('style');
+                        style.id = 'cursor-style';
+                        style.textContent = `
+                            .cursor {
+                                animation: blink 1s infinite;
+                                color: var(--accent-primary);
+                            }
+                            @keyframes blink {
+                                0%, 50% { opacity: 1; }
+                                51%, 100% { opacity: 0; }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                }, 500);
             }
-        });
-    }
-}
+        };
 
-// Form Validation and Handling
-class ContactForm {
-    constructor() {
-        this.form = document.getElementById('contact-form');
-        this.submitBtn = document.getElementById('submit-btn');
+        // Start typing animation immediately
+        typeWriter();
+    }
+
+    // Theme toggle functionality
+    initializeThemeToggle() {
+        const themeToggle = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', currentTheme);
         
-        this.init();
-    }
+        if (currentTheme === 'light') {
+            themeToggle.checked = true;
+        }
 
-    init() {
-        if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        // Theme toggle event listener
+        themeToggle.addEventListener('change', () => {
+            const theme = themeToggle.checked ? 'light' : 'dark';
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
             
-            // Real-time validation
-            const inputs = this.form.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('blur', () => this.validateField(input));
-                input.addEventListener('input', () => this.clearError(input));
+            // Update particles color based on theme
+            this.updateParticlesTheme(theme);
+        });
+    }
+
+    // Update particles theme
+    updateParticlesTheme(theme) {
+        if (window.pJSDom && window.pJSDom[0]) {
+            const particles = window.pJSDom[0].pJS.particles;
+            const colors = theme === 'light' 
+                ? ['#14b8a6', '#8b5cf6', '#3b82f6']
+                : ['#00ffc6', '#ba4aff', '#3b82f6'];
+            
+            particles.array.forEach(particle => {
+                particle.color.value = colors[Math.floor(Math.random() * colors.length)];
             });
         }
     }
 
-    validateField(field) {
-        const value = field.value.trim();
-        const fieldName = field.name;
-        let isValid = true;
-        let errorMessage = '';
-
-        switch (fieldName) {
-            case 'name':
-                if (!value) {
-                    errorMessage = 'Name is required';
-                    isValid = false;
-                } else if (value.length < 2) {
-                    errorMessage = 'Name must be at least 2 characters';
-                    isValid = false;
-                }
-                break;
-                
-            case 'email':
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!value) {
-                    errorMessage = 'Email is required';
-                    isValid = false;
-                } else if (!emailRegex.test(value)) {
-                    errorMessage = 'Please enter a valid email address';
-                    isValid = false;
-                }
-                break;
-                
-            case 'subject':
-                if (!value) {
-                    errorMessage = 'Subject is required';
-                    isValid = false;
-                } else if (value.length < 5) {
-                    errorMessage = 'Subject must be at least 5 characters';
-                    isValid = false;
-                }
-                break;
-                
-            case 'message':
-                if (!value) {
-                    errorMessage = 'Message is required';
-                    isValid = false;
-                } else if (value.length < 10) {
-                    errorMessage = 'Message must be at least 10 characters';
-                    isValid = false;
-                }
-                break;
-        }
-
-        this.showError(field, errorMessage, !isValid);
-        return isValid;
-    }
-
-    showError(field, message, show) {
-        const errorElement = document.getElementById(`${field.name}-error`);
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.toggle('show', show);
-        }
-        
-        field.classList.toggle('error', show);
-    }
-
-    clearError(field) {
-        this.showError(field, '', false);
-    }
-
-    validateForm() {
-        const inputs = this.form.querySelectorAll('input[required], textarea[required]');
-        let isValid = true;
-
-        inputs.forEach(input => {
-            if (!this.validateField(input)) {
-                isValid = false;
-            }
-        });
-
-        return isValid;
-    }
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        if (!this.validateForm()) {
-            return;
-        }
-
-        // Show loading state
-        this.submitBtn.classList.add('loading');
-        this.submitBtn.disabled = true;
-
-        // Simulate form submission
-        try {
-            await this.simulateSubmission();
-            this.showSuccessMessage();
-            this.form.reset();
-        } catch (error) {
-            this.showErrorMessage();
-        } finally {
-            this.submitBtn.classList.remove('loading');
-            this.submitBtn.disabled = false;
-        }
-    }
-
-    simulateSubmission() {
-        return new Promise((resolve) => {
-            setTimeout(resolve, 2000); // Simulate network delay
-        });
-    }
-
-    showSuccessMessage() {
-        this.showNotification('Message sent successfully!', 'success', 'fas fa-check-circle');
-    }
-
-    showErrorMessage() {
-        this.showNotification('Failed to send message. Please try again.', 'error', 'fas fa-exclamation-triangle');
-    }
-
-    showNotification(text, type, icon) {
-        const message = document.createElement('div');
-        message.className = `notification ${type}`;
-        message.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'success' ? 'var(--color-success)' : 'var(--color-error)'};
-            color: white;
-            padding: var(--space-16) var(--space-24);
-            border-radius: var(--radius-base);
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            animation: slideIn 0.3s ease-out;
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-        `;
-        message.innerHTML = `
-            <i class="${icon}"></i>
-            <span>${text}</span>
-        `;
-
-        document.body.appendChild(message);
-
-        setTimeout(() => {
-            message.style.animation = 'slideOut 0.3s ease-out forwards';
-            setTimeout(() => message.remove(), 300);
-        }, 3000);
-    }
-}
-
-// Resume Download Handler
-class ResumeDownload {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        const downloadBtn = document.getElementById('download-resume');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.downloadResume();
-            });
-        }
-    }
-
-    downloadResume() {
-        // Create a simulated PDF download
-        const resumeContent = this.generateResumeData();
-        const blob = new Blob([resumeContent], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Rahul_Poliyath_Resume.txt';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        // Show download notification
-        this.showDownloadNotification();
-    }
-
-    generateResumeData() {
-        return `
-RAHUL POLIYATH
-Full Stack Developer
-Email: Rahulpoliyath@gmail.com
-Location: NAVI MUMBAI, MH
-GitHub: https://github.com/rahulpoliyath
-LinkedIn: https://linkedin.com/in/rahulpoliyath
-
-
-# Rahul Radish Poliyath
-
-**Email:** rahulpoliyath5230@gmail.com  
-**Mobile:** +91 xxxxxx5825 ~ Available upon request
-**Address:**  Vashi, Navi Mumbai, 410206
-
----
-
-## Career Objective
-Motivated and detail-oriented BCA graduate eager to launch a career in IT, software development, or cloud computing. Seeking a challenging entry-level role in a dynamic organization to utilize my technical and analytical skills while contributing to innovative, impactful projects and growing professionally.
-
----
-
-## Education
-**Bachelor of Computer Applications (BCA)**  
-Pune University • Graduated 2022  
-
-**Higher Secondary (12th) – Commerce**  
-HSC Board (Commerce) • 2018  
-
-**High School (10th) – English Medium**  
-SSC Board • 2016
-
----
-
-## Technical Skills
-- Programming Languages: Python, Java, C++, HTML
-- Web Technologies: HTML, CSS, JavaScript
-- Databases: MySQL, SQL
-- Operating Systems: Linux, Windows, Android
-- Tools: Git, VS Code, Office Suite
-
----
-
-## Certification
-- Cloud Computing (2024)
-
----
-
-## Projects
-- **FEATURED PROJECTS
-Weather Dashboard
-Technologies: React, Chart.js, Weather API, CSS Grid
-- Interactive weather dashboard with location-based forecasts
-- Historical data visualization and mobile-responsive design
-- Integration with third-party weather APIs
-
-- **Portfolio Website:** Built a responsive personal website using HTML, CSS, and JavaScript.
-
----
-
-## Strengths & Soft Skills
-- Fast learner and adaptable to new technologies
-- Strong logical and analytical thinking
-- Effective communicator and team player
-- Attention to detail and consistent performance
-
----
-
-## Extra Information
-**Languages:** English, Hindi, Marathi  
-
-**Hobbies:** Gaming, coding, tech tutorials, online learning
-
----
-
-## References
-Available on request.
-
----
-
-> *Profile Summary:* Energetic BCA graduate with strong programming fundamentals, hands-on project experience, and Cloud Computing certification. Highly motivated to contribute technical, creative, and problem-solving abilities in a forward-thinking IT company.
-Passionate full-stack developer with 2+ years of personal experience building scalable web applications. 
-I specialize in modern JavaScript frameworks, cloud technologies, and creating exceptional user experiences.
-
-CONTACT INFORMATION
-Email: rahulpoliyath@gmail.com
-Phone: Available upon request
-Location: NAVI MUMBAI, MH
-GitHub: https://github.com/rahulpoliyath5230
-LinkedIn: https://linkedin.com/in/rahulpoliyath
-Twitter: https://twitter.com/rahulpoliyath
-
----
-Generated on: ${new Date().toLocaleDateString()}
-        `;
-    }
-
-    showDownloadNotification() {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--color-primary);
-            color: var(--color-btn-primary-text);
-            padding: var(--space-16) var(--space-24);
-            border-radius: var(--radius-base);
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            animation: slideIn 0.3s ease-out;
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-        `;
-        notification.innerHTML = `
-            <i class="fas fa-download"></i>
-            <span>Resume downloaded successfully!</span>
-        `;
-
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease-out forwards';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-}
-
-// Scroll Animations
-class ScrollAnimations {
-    constructor() {
-        this.observer = null;
-        this.init();
-    }
-
-    init() {
-        this.createObserver();
-        this.observeElements();
-        this.animateSkillBars();
-    }
-
-    createObserver() {
-        const options = {
+    // Scroll animations using Intersection Observer
+    initializeScrollAnimations() {
+        const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        this.observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger skill bar animations
+                    if (entry.target.classList.contains('skills-grid')) {
+                        this.animateSkillBars();
+                    }
                 }
             });
-        }, options);
-    }
+        }, observerOptions);
 
-    observeElements() {
-        const elements = document.querySelectorAll('.section-title, .about-text, .stat-card, .project-card, .timeline-item, .contact-info');
-        elements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            this.observer.observe(el);
+        // Observe sections for fade-in animations
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Observe individual elements
+        const elements = document.querySelectorAll('.project-card, .skill-item, .contact-form-wrapper');
+        elements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
         });
     }
 
-    animateSkillBars() {
-        const skillsSection = document.getElementById('skills');
+    // Initialize skill bars
+    initializeSkillBars() {
         const skillBars = document.querySelectorAll('.skill-progress');
         
-        const skillsObserver = new IntersectionObserver((entries) => {
+        skillBars.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = '0%';
+        });
+    }
+
+    // Animate skill bars
+    animateSkillBars() {
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        skillBars.forEach((bar, index) => {
+            const width = bar.getAttribute('data-width');
+            setTimeout(() => {
+                bar.style.width = width + '%';
+            }, index * 200);
+        });
+    }
+
+    // Contact form validation and handling
+    initializeContactForm() {
+        const form = document.getElementById('contactForm');
+        const inputs = form.querySelectorAll('.form-input');
+        
+        // Add floating label functionality
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+
+            // Check if input has value on load
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+
+        // Form submission handler
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Validate form
+            if (this.validateForm(data)) {
+                this.submitForm(data);
+            }
+        });
+    }
+
+    // Form validation
+    validateForm(data) {
+        const errors = [];
+        
+        if (!data.name || data.name.trim().length < 2) {
+            errors.push('Name must be at least 2 characters long');
+        }
+        
+        if (!data.email || !this.isValidEmail(data.email)) {
+            errors.push('Please enter a valid email address');
+        }
+        
+        if (!data.subject || data.subject.trim().length < 3) {
+            errors.push('Subject must be at least 3 characters long');
+        }
+        
+        if (!data.message || data.message.trim().length < 10) {
+            errors.push('Message must be at least 10 characters long');
+        }
+        
+        if (errors.length > 0) {
+            this.showFormErrors(errors);
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Email validation
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Show form errors
+    showFormErrors(errors) {
+        // Remove existing error messages
+        const existingErrors = document.querySelectorAll('.form-error');
+        existingErrors.forEach(error => error.remove());
+        
+        // Create error message element
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'form-error';
+        errorDiv.style.cssText = `
+            background: rgba(255, 84, 89, 0.1);
+            border: 1px solid rgba(255, 84, 89, 0.3);
+            color: #ff5459;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        `;
+        
+        errorDiv.innerHTML = `
+            <strong>Please fix the following errors:</strong>
+            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                ${errors.map(error => `<li>${error}</li>`).join('')}
+            </ul>
+        `;
+        
+        const form = document.getElementById('contactForm');
+        form.insertBefore(errorDiv, form.firstChild);
+        
+        // Remove error after 5 seconds
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 5000);
+    }
+
+    // Submit form (demo functionality)
+    submitForm(data) {
+        const submitButton = document.querySelector('.submit-button');
+        const originalText = submitButton.innerHTML;
+        
+        // Show loading state
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitButton.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            // Show success message
+            this.showSuccessMessage();
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Reset button
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            
+            // Remove focused classes
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach(group => group.classList.remove('focused'));
+            
+        }, 2000);
+    }
+
+    // Show success message
+    showSuccessMessage() {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'form-success';
+        successDiv.style.cssText = `
+            background: rgba(0, 255, 198, 0.1);
+            border: 1px solid rgba(0, 255, 198, 0.3);
+            color: #00ffc6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        `;
+        
+        successDiv.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <strong>Message sent successfully!</strong>
+            <p style="margin: 0.5rem 0 0 0;">Thank you for reaching out. I'll get back to you soon!</p>
+        `;
+        
+        const form = document.getElementById('contactForm');
+        form.insertBefore(successDiv, form.firstChild);
+        
+        // Remove success message after 5 seconds
+        setTimeout(() => {
+            if (successDiv.parentNode) {
+                successDiv.remove();
+            }
+        }, 5000);
+    }
+
+    // Back to top button functionality
+    initializeBackToTop() {
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Smooth scroll for navigation links
+    initializeSmoothScroll() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Also handle CTA buttons
+        const ctaButtons = document.querySelectorAll('.cta-button');
+        ctaButtons.forEach(button => {
+            if (button.getAttribute('href').startsWith('#')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const targetId = button.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const navHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - navHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    }
+}
+
+// Additional animations and effects
+class AnimationController {
+    constructor() {
+        this.initializeParallax();
+        this.initializeHoverEffects();
+        this.initializeTextAnimations();
+    }
+
+    // Parallax scrolling effect
+    initializeParallax() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-content');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    }
+
+    // Enhanced hover effects
+    initializeHoverEffects() {
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add glow effect to social links
+        const socialLinks = document.querySelectorAll('.social-link');
+        socialLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.style.boxShadow = '0 0 30px var(--glow-primary)';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                link.style.boxShadow = 'var(--glass-shadow)';
+            });
+        });
+    }
+
+    // Text reveal animations
+    initializeTextAnimations() {
+        const textElements = document.querySelectorAll('.bio-text, .contact-info p');
+        
+        const textObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    skillBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0%';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 300);
-                    });
-                    skillsObserver.unobserve(entry.target);
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
         
-        if (skillsSection) {
-            skillsObserver.observe(skillsSection);
-        }
+        textElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            textObserver.observe(element);
+        });
     }
 }
 
-// Navbar scroll effect
-class NavbarScroll {
-    constructor() {
-        this.navbar = document.querySelector('.navbar');
-        this.init();
+// Utility functions
+class Utils {
+    static debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 
-    init() {
-        if (this.navbar) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    this.navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                    this.navbar.style.boxShadow = 'var(--shadow-md)';
-                } else {
-                    this.navbar.style.background = 'var(--glass-bg)';
-                    this.navbar.style.boxShadow = 'none';
-                }
-            });
-        }
+    static throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
     }
 }
 
-// Add CSS animations
-const animationStyles = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+// Performance optimizations
+const optimizedScroll = Utils.throttle(() => {
+    // Throttled scroll handler for better performance
+    const scrolled = window.pageYOffset;
+    
+    // Update navbar opacity based on scroll
+    const navbar = document.querySelector('.navbar');
+    if (scrolled > 100) {
+        navbar.style.background = 'rgba(30, 41, 59, 0.9)';
+    } else {
+        navbar.style.background = 'var(--bg-glass)';
     }
+}, 16);
 
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-
-    @keyframes bounceIn {
-        0% {
-            transform: translate(-50%, -50%) scale(0.3);
-            opacity: 0;
-        }
-        50% {
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-        70% {
-            transform: translate(-50%, -50%) scale(0.9);
-        }
-        100% {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }
-
-    .animate-in {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-
-    .error input,
-    .error textarea {
-        border-color: var(--color-error) !important;
-    }
-`;
+window.addEventListener('scroll', optimizedScroll);
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Add animation styles
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = animationStyles;
-    document.head.appendChild(styleSheet);
-
-    // Initialize all components
-    const themeManager = new ThemeManager();
-    const mobileNav = new MobileNav();
-    const smoothScroll = new SmoothScroll();
-    const contactForm = new ContactForm();
-    const resumeDownload = new ResumeDownload();
-    const scrollAnimations = new ScrollAnimations();
-    const navbarScroll = new NavbarScroll();
-
-    // Initialize typing animation
-    const typingElement = document.getElementById('typing-text');
-    if (typingElement) {
-        const texts = [
-            'Full Stack Developer',
-            'Anonymous',
-            'React Specialist',
-            'Node.js Expert',
-            'UI/UX Enthusiast',
-            'Problem Solver'
-        ];
-        new TypingAnimation(typingElement, texts, 100, 2000);
-    }
-
-    // Add loading completed class to body
+    // Wait for particles.js to load
     setTimeout(() => {
-        document.body.classList.add('loaded');
+        new FuturisticPortfolio();
+        new AnimationController();
     }, 100);
-
-    // Debug logging
-    console.log('Portfolio website initialized successfully');
-    console.log('Theme Manager:', themeManager);
-    console.log('All components loaded');
 });
 
-// Handle page visibility change
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        document.title = '👋 Come back soon! - XrAnonymous';
-    } else {
-        document.title = 'RahulPoliyath - Full Stack Developer';
+// Handle window resize for responsive particles
+window.addEventListener('resize', Utils.debounce(() => {
+    if (window.pJSDom && window.pJSDom[0]) {
+        window.pJSDom[0].pJS.fn.particlesRefresh();
     }
-});
+}, 250));
 
-// Add some Easter eggs for fun
-let clickCount = 0;
-document.addEventListener('click', (e) => {
-    if (e.target.closest('.profile-photo')) {
-        clickCount++;
-        if (clickCount === 5) {
-            const messages = [
-                "You found the Easter egg! 🎉",
-                "Thanks for being curious! 🔍",
-                "Keep exploring! 🚀",
-                "You're awesome! ⭐"
-            ];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: var(--gradient-primary);
-                color: white;
-                padding: var(--space-24);
-                border-radius: var(--radius-lg);
-                box-shadow: var(--shadow-lg);
-                z-index: 1001;
-                font-size: var(--font-size-lg);
-                font-weight: var(--font-weight-semibold);
-                animation: bounceIn 0.5s ease-out;
-            `;
-            notification.textContent = randomMessage;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'fadeOut 0.5s ease-out forwards';
-                setTimeout(() => notification.remove(), 500);
-            }, 2000);
-            
-            clickCount = 0;
-        }
+// Add loading animation
+window.addEventListener('load', () => {
+    // Remove any loading overlay if present
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
     }
+    
+    // Trigger initial animations
+    document.body.classList.add('loaded');
 });
