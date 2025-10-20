@@ -671,7 +671,6 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         showNotification(' Welcome to my space. 🚀', 'success');
     }, 6000); // adjust this delay depending on how long your notification lasts
-})
 });
 
 // Error handling for images and external resources
