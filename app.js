@@ -664,8 +664,14 @@ window.addEventListener('load', () => {
     
     // Show welcome notification
     setTimeout(() => {
-        showNotification('Welcome to Rahul Poliyath\'s Portfolio! 👋', 'info');
+        showNotification('Hi there! I’m Rahul  👋', 'info');
     }, 1000);
+
+       // Show second notification after (1s + delay of first notification)
+    setTimeout(() => {
+        showNotification(' Welcome to my space. 🚀', 'success');
+    }, 6000); // adjust this delay depending on how long your notification lasts
+})
 });
 
 // Error handling for images and external resources
