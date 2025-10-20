@@ -1802,6 +1802,12 @@ textarea.form-control {
   width: 24px;
 }
 
+ .watermark {
+        bottom: 10px;
+        right: 10px;
+        font-size: 10px;
+    }
+
 .contact-item h4 {
   margin-bottom: var(--space-4);
   color: var(--color-text);
