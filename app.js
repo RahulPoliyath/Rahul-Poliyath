@@ -174,11 +174,13 @@ function closeMobileMenu() {
 // Typing Effect
 function initializeTypingEffect() {
     const typingText = document.getElementById('typingText');
-    const text = 'Ghost Protocol'
+    const text = [
+        'Ghost Protocol',
         'Securing the digital world, one line of code at a time',
-                    'Ethical hacker and security researcher',
-                    'Building secure applications for the future',
-                    'Protecting data and defending systems';
+        'Ethical hacker and security researcher',
+        'Building secure applications for the future',
+        'Protecting data and defending systems'
+    ];
 
     
     let index = 0;
