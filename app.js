@@ -464,7 +464,7 @@ function generateResumeHTML() {
                     <ul>
                         <li>Analyst - Technical Support Executive</li>
                         <li>Client - Xfinity</li>
-                        <li>Used remote desktop tools, network analysis software and diagnostic utilities to troubleshoot and resolve problems</li>
+                        <li>Used remote desktop tools, network analysis software and diagnostic utilities to troubleshoot and resolve problems.</li>
                         <li>Applied logical problem solving skills to identify root cause and provide effective sollutions.</li>
                     </ul>
                 </div>
@@ -474,7 +474,7 @@ function generateResumeHTML() {
                 <h2>Featured Projects</h2>
                 
                 <div style="margin-bottom: 15px;">
-                    <strong>AI Video Generator:</strong> Production-ready AI-powered video generation platform with text-to-video capabilities using Python, FastAPI, React, and AI APIs.
+                    <strong>Web Application:</strong> Successfully developed a Production-ready real-time college web application platform that allows students and faculty to share updates such as timetables, lecture cancellations, and department-specific notifications — featuring secure login access and role-based updates as per students cource. Adept at working with both frontend and backend technologies, committed to delivering innovative, efficient, and user-focused digital solutions..
                 </div>
                 
                 <div style="margin-bottom: 15px;">
