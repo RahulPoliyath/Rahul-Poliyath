@@ -172,8 +172,7 @@ function closeMobileMenu() {
 // Typing Effect
 function initializeTypingEffect() {
     const typingText = document.getElementById('typingText');
-    const text = [
-        'Ghost Protocol';
+    const text = 'Ghost Protocol';
  
 let index = 0;
     let isDeleting = false;
