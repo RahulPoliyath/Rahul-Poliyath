@@ -203,9 +203,6 @@ let index = 0;
 }
 
 
-
-
-
 // Animation Management
 function initializeAnimations() {
     const observerOptions = {
