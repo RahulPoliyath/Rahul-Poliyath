@@ -430,8 +430,8 @@ function generateResumeHTML() {
             </div>
             
             <div class="contact-info">
-                <p>Email: rahul.poliyath@email.com | Phone: +91-XXXXXXXXXX</p>
-                <p>LinkedIn: linkedin.com/in/rahulpoliyath | GitHub: github.com/rahulpoliyath</p>
+                <p>Email: rahul.poliyath@email.com | Phone: +91-XXXXXXXXXX  | Contact Me </p>
+                <p>LinkedIn: linkedin.com/in/rahulpoliyath | Telegram: github.com/RealAnonymousUser</p>
             </div>
             
             <div class="section">
