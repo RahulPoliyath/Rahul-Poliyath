@@ -469,7 +469,7 @@ function generateResumeHTML() {
                     </ul>
                 </div>
                
-               <div style="margin-bottom: 20px;">
+             <div style="margin-bottom: 20px;">
                     <div class="job-header">
                         <h3>Web Developer</h3>
                         <span class="date">2021 - 2023</span>
@@ -513,7 +513,7 @@ function generateResumeHTML() {
                 <ul>
                     <li>AWS Certified Developer Associate</li>
                     <li>Google Cloud Professional Developer</li>
-                    <li>React.js Certification</li>
+                    <li>React.js Certification</li> 
                 </ul>
             </div>
         </body>
@@ -566,7 +566,7 @@ function showNotification(message, type = 'info') {
 }
 
 function getNotificationIcon(type) {
-    switch (type) {
+    switch (type) {l.l;
         case 'success': return 'check-circle';
         case 'error': return 'exclamation-circle';
         case 'warning': return 'exclamation-triangle';
