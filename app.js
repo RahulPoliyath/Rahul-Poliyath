@@ -461,7 +461,6 @@ function generateResumeHTML() {
                         <span class="date">July 2023 - June 2025</span>
                     </div>
                     <div class="company">eClerx Services Ltd</div>
-                     <span class="date">July 2023 - June 2025</span>
                     <ul>
                         <li>Analyst - Technical Support Executive</li>
                         <li>Client - Xfinity</li>
