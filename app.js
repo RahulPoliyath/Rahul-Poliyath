@@ -548,20 +548,6 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-    // Start typing animation
-            const typingElement = document.getElementById('typingText');
-            if (typingElement) {
-                new TypingAnimation(typingElement, [
-                    'Securing the digital world, one line of code at a time',
-                    'Ethical hacker and security researcher',
-                    'Building secure applications for the future',
-                    'Protecting data and defending systems'
-                ]);
-            }
-        });
-    }
-}
-
 
 function getNotificationIcon(type) {
     switch (type) {
