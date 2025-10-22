@@ -436,7 +436,7 @@ function generateResumeHTML() {
             
             <div class="section">
                 <h2>Professional Summary</h2>
-                <p>Passionate full stack developer with 3+ years of experience building scalable web applications and AI-powered solutions. Expert in modern JavaScript frameworks, Python, and cloud technologies. Proven track record of delivering high-quality software solutions and leading development teams.</p>
+                <p>Enthusiastic and self-motivated Developer with over 2 years of professional experience at eClerx, supporting Xfinity clients through advanced technical solutions and remote troubleshooting. Passionate about technology and programming, with a strong dedication to learning and improving skills since 2018. Skilled in both frontend and backend development, network systems, and problem-solving across multiple platforms. Known for combining analytical thinking with creativity to build efficient, user-friendly, and scalable software solutions.</p>
             </div>
             
             <div class="section">
@@ -457,15 +457,15 @@ function generateResumeHTML() {
                 
                 <div style="margin-bottom: 20px;">
                     <div class="job-header">
-                        <h3>Company Namer</h3>
+                        <h3>Company Name</h3>
                         <span class="date">July 2023 - June 2025</span>
                     </div>
                     <div class="company">eClerx Services Ltd</div>
                     <ul>
                         <li>Analyst - Technical Support Executive</li>
-                        <li>Leading frontend architecture decisions and code reviews</li>
-                        <li>Implementing AI-powered features using Python and machine learning APIs</li>
-                        <li>Collaborating with cross-functional teams to deliver high-quality products</li>
+                        <li>Client - Xfinity</li>
+                        <li>Used remote desktop tools, network analysis software and diagnostic utilities to troubleshoot and resolve problems</li>
+                        <li>Applied logical problem solving skills to identify root cause and provide effective sollutions.</li>
                     </ul>
                 </div>
             </div>
