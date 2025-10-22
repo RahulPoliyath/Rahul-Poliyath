@@ -442,13 +442,13 @@ function generateResumeHTML() {
             <div class="section">
                 <h2>Technical Skills</h2>
                 <div style="margin-bottom: 15px;">
-                    <strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React.js, Vue.js, Tailwind CSS, Bootstrap
+                    <strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React.js, Vue.js, C++, Tailwind CSS, Bootstrap, Material Ui
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Backend:</strong> Node.js, Python, FastAPI, Express.js, RESTful APIs, GraphQL
+                    <strong>Backend:</strong> Node.js, Python, Java, FastAPI, PHP, Express.js, RESTful APIs, GraphQL, MySQL , DMBS, linux
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <strong>Tools & Technologies:</strong> Git, Docker, VS Code, Postman, Figma, Webpack, npm/yarn
+                    <strong>Tools & Technologies:</strong> Git, Docker, VS Code, Visual Studio, Webpack, AWS, RedHat5, Android, KaliLinux, Android Studio, Aide
                 </div>
             </div>
             
@@ -457,19 +457,19 @@ function generateResumeHTML() {
                 
                 <div style="margin-bottom: 20px;">
                     <div class="job-header">
-                        <h3>Full Stack Developer</h3>
-                        <span class="date">2023 - Present</span>
+                        <h3>Company Name</h3>
+                        <span class="date">July 2023 - June 2025</span>
                     </div>
-                    <div class="company">Tech Innovations</div>
+                    <div class="company">eClerx Services Ltd</div>
                     <ul>
-                        <li>Developing scalable web applications using React.js and Node.js</li>
+                        <li>Analyst - Technical Support Executive</li>
                         <li>Leading frontend architecture decisions and code reviews</li>
                         <li>Implementing AI-powered features using Python and machine learning APIs</li>
                         <li>Collaborating with cross-functional teams to deliver high-quality products</li>
                     </ul>
                 </div>
-                
-                <div style="margin-bottom: 20px;">
+               
+               <div style="margin-bottom: 20px;">
                     <div class="job-header">
                         <h3>Web Developer</h3>
                         <span class="date">2021 - 2023</span>
@@ -481,7 +481,7 @@ function generateResumeHTML() {
                         <li>Optimized website performance and implemented SEO best practices</li>
                         <li>Mentored junior developers and conducted code reviews</li>
                     </ul>
-                </div>
+                </div> 
             </div>
             
             <div class="section">
