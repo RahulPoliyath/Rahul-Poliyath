@@ -181,42 +181,36 @@ function initializeTypingEffect() {
         'Building secure applications for the future',
         'Protecting data and defending systems'
     ];
+ 
 
-    
-    
-
-//delete below and paste new
-    let textIndex = 0;     // Which text in the array
-    let charIndex = 0;     // Which character in the text
+let index = 0;
     let isDeleting = false;
-
+    
     function typeWriter() {
-        const currentText = texts[textIndex];
-
-        if (!isDeleting) {
-            typingText.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-            if (charIndex === currentText.length) {
+        if (!isDeleting && index < text.length) {
+            typingText.textContent = text.substring(0, index + 1);
+            index++;
+            setTimeout(typeWriter, 100);
+        } else if (isDeleting && index > 0) {
+            typingText.textContent = text.substring(0, index - 1);
+            index--;
+            setTimeout(typeWriter, 50);
+        } else if (!isDeleting && index === text.length) {
+            setTimeout(() => {
                 isDeleting = true;
-                setTimeout(typeWriter, 2000); // pause at full text
-                return;
-            }
-        } else {
-            typingText.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            if (charIndex === 0) {
+                typeWriter();
+            }, 2000);
+        } else if (isDeleting && index === 0) {
+            setTimeout(() => {
                 isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length; // move to next text
-            }
+                typeWriter();
+            }, 500);
         }
-
-        setTimeout(typeWriter, isDeleting ? 50 : 100);
     }
-
-    typeWriter();
+    
+    setTimeout(typeWriter, 1000);
 }
 
-document.addEventListener('DOMContentLoaded', initializeTypingEffect);
 
 
 
