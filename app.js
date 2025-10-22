@@ -169,50 +169,6 @@ function closeMobileMenu() {
 }
 
 
-// Typing Animation
-class TypingAnimation {
-    constructor(element, texts, speed = 100) {
-        this.element = element;
-        this.texts = texts;
-        this.speed = speed;
-        this.textIndex = 0;
-        this.charIndex = 0;
-        this.isDeleting = false;
-        this.start();
-    }
-    
-    start() {
-        this.type();
-    }
-    
-    type() {
-        const currentText = this.texts[this.textIndex];
-        
-        if (this.isDeleting) {
-            this.element.textContent = currentText.substring(0, this.charIndex - 1);
-            this.charIndex--;
-        } else {
-            this.element.textContent = currentText.substring(0, this.charIndex + 1);
-            this.charIndex++;
-        }
-        
-        let typeSpeed = this.isDeleting ? this.speed / 2 : this.speed;
-        
-        if (!this.isDeleting && this.charIndex === currentText.length) {
-            typeSpeed = 2000;
-            this.isDeleting = true;
-        } else if (this.isDeleting && this.charIndex === 0) {
-            this.isDeleting = false;
-            this.textIndex = (this.textIndex + 1) % this.texts.length;
-            typeSpeed = 500;
-        }
-        
-        setTimeout(() => this.type(), typeSpeed);
-    }
-}
-
-
-
 
 
 // Typing Effect
