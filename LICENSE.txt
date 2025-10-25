@@ -5,5 +5,10 @@ This code and website are the intellectual property of Rahul Poliyath.
 Unauthorized copying, modification, or redistribution of this project,
 via any medium, is strictly prohibited without express permission.
 
+You may view and reference this project for personal, educational, or demonstration purposes only.
+
+Reproduction, distribution, modification, or commercial use of this project, in whole or in part, without explicit written permission from the author, is strictly prohibited.
+
+Unauthorized use of this project’s content or code may result in legal action.
 
 © 2025 Rahul Poliyath
